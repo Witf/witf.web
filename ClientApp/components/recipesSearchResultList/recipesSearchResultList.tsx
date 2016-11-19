@@ -15,12 +15,13 @@ export function RecipeCard({recipe}: {recipe: Recipie }) {
 export interface IRecipesSearchResultListProps {
     recipies: Recipie[];
     query: string;
+    searching: boolean;
 }
 
 export function RecipesSearchResultList(props: IRecipesSearchResultListProps) {
     const noResults = !!props.query && props.recipies.length < 1;
 
-    if (noResults) {
+    if (noResults && !this.props.searching) {
         return <h5 style={{color: "#FFF", width: "100%" }}>Søk etter '{props.query}' gav ingen treff</h5>;
     }
 

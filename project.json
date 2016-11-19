@@ -2,7 +2,7 @@
   "userSecretsId": "aspnet-WebApp1-c23d27a4-eb88-4b18-9b77-2a93f3b15119",
   "dependencies": {
     "Microsoft.NETCore.App": {
-      "version": "1.0.1",
+      "version": "1.1.0",
       "type": "platform"
     },
     "Microsoft.AspNetCore.ReactServices": "1.0.0-*",
