@@ -61,6 +61,7 @@ namespace WitfWeb
             var host = Environment.GetEnvironmentVariable("WITF_API");
             app.MapWhen(IsApiPath, builder => builder.RunProxy(new ProxyOptions
             {
+                Port = "80",
                 Host = host
             }));
             app.UseStaticFiles();
