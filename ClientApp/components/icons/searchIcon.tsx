@@ -5,6 +5,10 @@ const defaultProps = {
     height:24
 };
 
+/**
+ * SVG Android Icon
+ * @param props
+ */
 export const SearchIcon = (props) => {
     props = Object.assign({}, defaultProps, props);
     return (

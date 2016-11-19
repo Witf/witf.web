@@ -1,30 +1,28 @@
 ﻿import * as React from "react";
 import "./recipeSearchBox.scss";
-import { LoadIcon } from "../loadIcon";
-import { SearchIcon } from "../icons";
 import Autosuggest from "react-autosuggest";
 import { provide } from "redux-typed";
-import * as Recipies from "../../store/recipe-search";
+import { recipeSearchActions } from "../../store/actions/recipeSearchActions";
+import {LoadIcon} from "../icons/loadIcon";
+import * as H from "history";
 
-class RecipeSearchBox extends React.Component<SearchBoxProps, any> {
+class RecipeSearchBoxClass extends React.Component<SearchBoxProps, any> {
     constructor() {
         super();
-
         this.state = {
             value: '',
             suggestions: []
         };
     }
+    
     onChange(event, { newValue, method }) {
         this.setState({
             value: newValue
         });
     }
-
     renderSuggestion({suggestion}, query) {
         return <span>{suggestion}</span>;
     }
-
     componentDidMount() {
         this.input && this.input.focus();
     }
@@ -34,16 +32,14 @@ class RecipeSearchBox extends React.Component<SearchBoxProps, any> {
             this.input = autosuggest.input;
         }
     }
-
     queryRecipies() {
+
         this.props.queryRecipies(this.state.value);
     }
-
     onSubmitForm(e: React.SyntheticEvent<Event>) {
         e.preventDefault();
         this.queryRecipies();
     }
-
     render() {
         const inputProps = {
             placeholder: "",
@@ -76,10 +72,10 @@ class RecipeSearchBox extends React.Component<SearchBoxProps, any> {
 
 const provider = provide(
     (state: IApplicationState) => state.recipies,
-    Recipies.actionCreators
+    recipeSearchActions
 ).withExternalProps<{
-
+    location: H.Location,
 }>();
 
 type SearchBoxProps = typeof provider.allProps;
-export default provider.connect(RecipeSearchBox as any);
+export const RecipeSearchBox = provider.connect(RecipeSearchBoxClass as any);

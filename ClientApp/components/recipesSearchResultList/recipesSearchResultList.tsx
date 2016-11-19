@@ -1,16 +1,6 @@
 ﻿import * as React from "react";
 import "./recipesSearchResultList.scss";
-
-export function RecipeCard({recipe}: {recipe: Recipie }) {
-    return (
-        <a alt="recipe.title" href="#" className="hoverable recipetCard">
-            <div className="recipetImage" style={{ backgroundImage: "url(\"" + recipe.imageUrl + "\")" }}></div>
-            <div className="recipetInfo">
-                <h1 className="title">{recipe.title}</h1>
-            </div>
-        </a>
-    );
-}
+import { RecipeCard } from "../recipeCard/recipeCard";
 
 export interface IRecipesSearchResultListProps {
     recipies: Recipie[];
@@ -21,7 +11,7 @@ export interface IRecipesSearchResultListProps {
 export function RecipesSearchResultList(props: IRecipesSearchResultListProps) {
     const noResults = !!props.query && props.recipies.length < 1;
 
-    if (noResults && !this.props.searching) {
+    if (noResults && !props.searching) {
         return <h5 style={{color: "#FFF", width: "100%" }}>Søk etter '{props.query}' gav ingen treff</h5>;
     }
 
