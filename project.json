@@ -73,7 +73,8 @@
 
   "scripts": {
     "prepublish": [
-      "npm install",
+      "npm install yarn -g",
+      "yarn install",
       "node node_modules/webpack/bin/webpack.js --config webpack.config.vendor.js --env.prod",
       "node node_modules/webpack/bin/webpack.js --env.prod"
     ],

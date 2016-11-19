@@ -44,7 +44,8 @@
     "webpack": "^1.13.2",
     "webpack-hot-middleware": "^2.12.2",
     "webpack-merge": "^0.14.1",
-    "webpack-node-externals": "^1.4.3"
+    "webpack-node-externals": "^1.4.3",
+    "yarn": "^0.17.6"
   },
   "devDependencies": {
     "ignore-loader": "^0.1.2"
