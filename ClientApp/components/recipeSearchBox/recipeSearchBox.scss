@@ -1,0 +1,146 @@
+﻿.searchbox-wrapper {
+    //color: white;
+    z-index: 2;
+
+    .searchBox {
+        display: flex;
+        flex-direction: row;
+        max-width: 600px;
+        margin: 0 auto;
+
+        .searchBtn{
+            font-size: 1.5em;
+            width: 80px;
+            padding: 5px 5px;
+            border-bottom-right-radius: 4px;
+            border-top-right-radius: 4px;
+            background-color: #FFF;
+            border: 1px solid #aaa;
+            border-left: none;
+        }
+        .react-autosuggest__container {
+            flex: 1;
+            position: relative;
+        }
+
+        .react-autosuggest__input {
+            width: 100%;
+            height: 30px;
+            padding: 24px 24px;
+            font-family: Helvetica, sans-serif;
+            font-weight: 300;
+            font-size: 16px;
+            border: 1px solid #aaa;
+            border-bottom-left-radius: 4px;
+            border-top-left-radius: 4px;
+            border-bottom-right-radius: 0;
+            border-top-right-radius: 0;
+        }
+
+        .react-autosuggest__input:focus {
+            outline: none;
+        }
+
+        .react-autosuggest__container--open .react-autosuggest__input {
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        .react-autosuggest__suggestions-container {
+            display: none;
+        }
+
+        .react-autosuggest__container--open .react-autosuggest__suggestions-container {
+            overflow-y: auto;
+            max-height: 350px;
+            display: block;
+            position: absolute;
+            top: 51px;
+            width: 100%;
+            border: 1px solid #aaa;
+            background-color: #fff;
+            font-family: Helvetica, sans-serif;
+            font-weight: 300;
+            font-size: 16px;
+            border-bottom-left-radius: 4px;
+            z-index: 2;
+        }
+
+        .react-autosuggest__suggestions-list {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+
+        .react-autosuggest__suggestion {
+            cursor: pointer;
+            padding: 10px 20px;
+        }
+
+        .react-autosuggest__suggestion--focused {
+            background-color: #ddd;
+        }
+
+        .noinput {
+            color: white;
+            width: 100%;
+            background-color: rgba(255,255,255, 0.1);
+            border: none;
+            border: 1px dashed gray;
+            font-size: 2em;
+            border-radius: 10px;
+            padding: 15px 0 15px 25px;
+            -webkit-transition: all 0.3s; /* Safari */
+            transition: all 0.3s;
+
+            &:focus {
+                outline-width: 0;
+                box-shadow: none;
+                padding-left: 30px;
+                background-color: rgba(255,255,255, 0.2);
+                -webkit-transition: all 0.3s; /* Safari */
+                transition: all 0.3s;
+
+                &::-webkit-input-placeholder {
+                    color: transparent;
+                    transition: all 0.3s;
+                }
+
+                &:-moz-placeholder { /* Firefox 18- */
+                    transition: all 0.3s;
+                    color: transparent;
+                }
+
+                &::-moz-placeholder { /* Firefox 19+ */
+                    transition: all 0.3s;
+                    color: transparent;
+                }
+
+                &:-ms-input-placeholder {
+                    transition: all 0.3s;
+                    color: transparent;
+                }
+            }
+
+            &::-webkit-input-placeholder {
+                transition: all 0.3s;
+                color: white;
+            }
+
+            &:-moz-placeholder { /* Firefox 18- */
+                transition: all 0.3s;
+                color: white;
+            }
+
+            &::-moz-placeholder { /* Firefox 19+ */
+                transition: all 0.3s;
+                color: white;
+            }
+
+            &:-ms-input-placeholder {
+                transition: all 0.3s;
+                color: white;
+            }
+        }
+    }
+}

@@ -1,0 +1,4 @@
+﻿home
+- all styles to css
+- clear X on search bar (only show after loading is done)
+- search bar should be "static header" fixed
