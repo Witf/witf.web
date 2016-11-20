@@ -7,6 +7,7 @@
 
 interface IApplicationState {
     recipeSearchsState: IRecipeSearchsState;
+    recipeDetails: IRecipeDetailsState;
 }
 
 interface IRecipeDetailsState {

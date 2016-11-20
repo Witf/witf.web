@@ -16,7 +16,7 @@ function update(id: string, state: IRecipeDetailsState, newObject: IEntityMeta<I
     return Object.assign({}, state);
 }
 
-export const recipeSearchReducer: Reducer<IRecipeDetailsState> = (state, action) => {
+export const recipeDetailsReducer: Reducer<IRecipeDetailsState> = (state, action) => {
     if (isActionType(action, Actions.LoadingRecipeDetailsAction)) {
         state = update(action.id, state, { loading: true });
         return state;

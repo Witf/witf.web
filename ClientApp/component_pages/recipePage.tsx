@@ -10,7 +10,20 @@ class RecipePageClass extends React.Component<RecipePageProps, any>{
     }
 
     render() {
-        return <div>Test</div>;
+        const id = this.props.params.id;
+        if (!!this.props.details[id]) {
+            const detailsMeta = this.props.details[id];
+
+            if (!!detailsMeta && !!detailsMeta.data) {
+                return <div className="page" style={{wordWrap: "break-word", whiteSpace: "pre-wrap", padding: 20, marginTop: "25%", height: 400, backgroundColor: "white"}}>
+                    <h5>Loaded details data for {id}:</h5>
+                    {JSON.stringify(detailsMeta)}
+                </div>; 
+            }
+
+        } 
+
+        return <div></div>;
     }
 }
 
@@ -19,7 +32,11 @@ type ExternalProps = {
     location: H.Location,
     params: { id: string }
 }
-const provider = provide((state: IApplicationState) => state.recipeSearchsState,
+const provider = provide((state: IApplicationState) => {
+        return {
+            details: state.recipeDetails
+        }
+    },
     recipeDetailsActions
 ).withExternalProps<ExternalProps>();
 type RecipePageProps = typeof provider.allProps;
