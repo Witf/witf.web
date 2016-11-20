@@ -1,7 +1,7 @@
 ﻿import * as React from "react";
 import { provide } from "redux-typed";
 import { RecipeSearchBox } from "../components/recipeSearchBox/recipeSearchBox";
-import "./home.scss";
+import "./homePage.scss";
 import * as H from "history";
 import {RecipesSearchResultList} from "../components/recipesSearchResultList/recipesSearchResultList";
 
@@ -11,12 +11,8 @@ class Home extends React.Component<HomeProps, { searchText: string; }> {
     }
     
     public render() {
-        
         return (
             <div id="page_home">
-                <div className="headerImageContainer">
-                    <img className="headerImage" src="static/images/food-kitchen-cutting-board-cooking-retina.jpg" />
-                </div>
                 <div className="page">
                     <RecipeSearchBox location={this.props.location}/>
                     <RecipesSearchResultList searching={this.props.isLoading} query={this.props.currentQuery} recipies={this.props.queryResults}/>
@@ -27,11 +23,11 @@ class Home extends React.Component<HomeProps, { searchText: string; }> {
 }
 
 const provider = provide(
-    (state: IApplicationState) => state.recipies,
+    (state: IApplicationState) => state.recipeSearchsState,
     {}
 ).withExternalProps<{
     location: H.Location,
     params: { q: string }
 }>();
 type HomeProps = typeof provider.allProps;
-export default provider.connect(Home as any);
+export const HomePage = provider.connect(Home as any);

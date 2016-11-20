@@ -1,5 +1,4 @@
-﻿#page_home{
-    
+﻿#page_layout {
     .headerImageContainer {
         position: relative;
         top: 0;
@@ -10,7 +9,7 @@
         box-sizing: border-box;
         margin-bottom: -490px;
 
-        .headerImage{
+        .headerImage {
             transform: translateX(-50%) translateY(0%) translateZ(0px);
             position: relative;
             top: 0;
@@ -21,7 +20,7 @@
             overflow: hidden;
             transform: translateX(-50%);
             -ms-transform: translate(-50%);
-            -webkit-transform: translateX(-50%); 
+            -webkit-transform: translateX(-50%);
         }
     }
 }

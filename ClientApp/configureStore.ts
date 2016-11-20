@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, compose, combineReducers, GenericStoreEnhancer } from 'redux';
 import thunk from 'redux-thunk';
 import { routerReducer } from 'react-router-redux';
-import * as Store from './store';
+import * as Store from './store/store';
 import { typedToPlain } from 'redux-typed';
 
 export default function configureStore(initialState?: IApplicationState) {
@@ -20,8 +20,8 @@ export default function configureStore(initialState?: IApplicationState) {
 
     // Enable Webpack hot module replacement for reducers
     if (module.hot) {
-        module.hot.accept('./store', () => {
-            const nextRootReducer = require<typeof Store>('./store');
+        module.hot.accept('./store/store', () => {
+            const nextRootReducer = require<typeof Store>('./store/store');
             store.replaceReducer(buildRootReducer(nextRootReducer.reducers));
         });
     }

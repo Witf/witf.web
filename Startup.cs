@@ -34,12 +34,10 @@ namespace WitfWeb
         }
         private static bool IsApiPath(HttpContext httpContext)
         {
-            return httpContext.Request.Path.Value.StartsWith(@"/api/", StringComparison.OrdinalIgnoreCase);
+            var tr = httpContext.Request.Path.Value.Contains("api");
+            return tr;
         }
-        private static bool IsLocal(HttpContext httpContext)
-        {
-            return httpContext.Request.Path.Value.ToLower().Contains("localhost");
-        }
+        
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
@@ -58,12 +56,15 @@ namespace WitfWeb
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+
             var host = Environment.GetEnvironmentVariable("WITF_API");
             app.MapWhen(IsApiPath, builder => builder.RunProxy(new ProxyOptions
             {
+                Scheme = "http",
                 Port = "80",
                 Host = host
             }));
+
             app.UseStaticFiles();
 
             app.UseMvc(routes =>
