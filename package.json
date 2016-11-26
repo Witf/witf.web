@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "start": "webpack-dev-server"
+  },
   "name": "witfweb",
   "version": "0.0.1",
   "dependencies": {
