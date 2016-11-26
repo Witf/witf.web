@@ -14,9 +14,12 @@ const history = syncHistoryWithStore(browserHistory, store);
 
 // This code starts up the React app when it runs in a browser. It sets up the routing configuration
 // and injects the app into a DOM element.
+const root = document.createElement("div");
+root.id = "witFridge_root";
+document.body.appendChild(root);
 ReactDOM.render(
     <Provider store={ store }>
         <Router history={ history } children={ routes } />
     </Provider>,
-    document.getElementById('react-app')
+    root
 );

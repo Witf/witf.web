@@ -18,17 +18,13 @@ module.exports = {
         vendor: ['domain-task', 'event-source-polyfill', 'react', 'react-dom', 'react-router', 'redux', 'redux-thunk', 'react-router-redux', 'redux-typed', 'style-loader'],
     },
     output: {
-        path: path.join(__dirname, 'wwwroot', 'dist'),
+        path: path.join(__dirname, 'wwwroot', 'scripts', 'dist'),
         filename: '[name].js',
         library: '[name]_[hash]',
     },
     plugins: [
         extractCSS,
         new webpack.optimize.OccurenceOrderPlugin(),
-        new webpack.DllPlugin({
-            path: path.join(__dirname, 'wwwroot', 'dist', '[name]-manifest.json'),
-            name: '[name]_[hash]'
-        }),
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': isDevBuild ? '"development"' : '"production"'
         })

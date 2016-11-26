@@ -22,7 +22,7 @@ var sharedConfig = () => ({
 });
 
 // Configuration for client-side bundle suitable for running in browsers
-var clientBundleOutputDir = './wwwroot/dist';
+var clientBundleOutputDir = './wwwroot/scripts/dist';
 var clientBundleConfig = merge(sharedConfig(), {
     entry: { 'main-client': './ClientApp/boot-client.tsx' },
     module: {
@@ -45,13 +45,11 @@ var clientBundleConfig = merge(sharedConfig(), {
             { test: /\.(png|jpg|jpeg|gif|svg)$/, loader: 'url', query: { limit: 25000 } }
         ]
     },
-    output: { path: path.join(__dirname, clientBundleOutputDir) },
+    output: {
+        path: path.join(__dirname, clientBundleOutputDir)
+    },
     plugins: [
-        new ExtractTextPlugin("app.css"),
-        new webpack.DllReferencePlugin({
-            context: __dirname,
-            manifest: require('./wwwroot/dist/vendor-manifest.json')
-        })
+        new ExtractTextPlugin("app.css")
     ].concat(isDevBuild ? [
         // Plugins that apply in development builds only
         new webpack.SourceMapDevToolPlugin({

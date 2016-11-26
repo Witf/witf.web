@@ -65,7 +65,7 @@ class RecipeSearchBox extends React.Component<SearchBoxProps, any> {
                             renderSuggestion={this.renderSuggestion}
                             inputProps={inputProps}
                             ref={this.storeInputReference.bind(this)} />
-                        <button onClick={this.queryRecipies.bind(this)} className="searchBtn">Søk</button>
+                        <button onClick={this.queryRecipies.bind(this)} className="searchBtn">Søcc</button>
                     </div>
                 </form>
                 <LoadIcon style={{ marginTop: 15, opacity: this.props.isLoading ? 1 : 0 }} />
