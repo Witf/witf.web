@@ -1,0 +1,26 @@
+﻿#page_layout {
+    .headerImageContainer {
+        position: relative;
+        top: 0;
+        left: -1px;
+        right: -1px;
+        overflow: hidden;
+        height: 490px;
+        box-sizing: border-box;
+        margin-bottom: -490px;
+        z-index: -1;
+        .headerImage {
+            transform: translateX(-50%) translateY(0%) translateZ(0px);
+            position: relative;
+            top: 0;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            max-width: none;
+            overflow: hidden;
+            transform: translateX(-50%);
+            -ms-transform: translate(-50%);
+            -webkit-transform: translateX(-50%);
+        }
+    }
+}

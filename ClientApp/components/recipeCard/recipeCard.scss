@@ -1,0 +1,31 @@
+﻿.recipetCard {
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    max-width: 150px;
+
+    .recipetImage {
+        height: 150px;
+        width: 150px;
+        background-position: center;
+        background-size: auto 150px;
+        display: inline-block;
+        background-size: auto 150px;
+
+        &:hover{
+            background-size: auto 180px;
+        }
+    }
+
+    .recipetInfo {
+        .title {
+            padding: 3px;
+            font-size: 1.1em;
+            margin: 0 auto;
+            text-align: center;
+            a{
+                color: #2d055a;
+            }
+        }
+    }
+}

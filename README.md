@@ -1,20 +1,29 @@
 ## Getting started
-- Open in the newest Visual Studio, atleast 2015 SP3
-- Restore npm packages
-- Set the environment variable and then restart dotnet run. On Windows
-thats:
+- Install node.js
+
+- Set environment variables on your system
 ```bash
-set ASPNETCORE_ENVIRONMENT=Development
-dotnet run
-```bash
-Or on Mac/Linux:
+ASPNETCORE_ENVIRONMENT=Development
+WITF_API=www.host.com
 ```
-set ASPNETCORE_ENVIRONMENT=Development
-export ASPNETCORE_ENVIRONMENT=Development
-dotnet run
+On windows you can open visual studio and everything gets restored. 
+But it might be good to restore everything the first time manually (and you have to on mac).
+
+- CD to the root of the project
+- Run these commands one by one
+```bash
+npm install yarn webpack -g
+yarn install
+webpack webpack.config.vendor.js
+webpack webpack.config.js
+dotnet restore
 ```
 
-This starts the app in dev mode and enables hot module reload.
-If your having trubble with the HMR (Hot module reload) ensure that 
-the environment variable has been set correctly. Make sure your 
-environment have access to the variable. If all fails, edit startup.cs for HMR.
+##### Environment
+Mac seems to be a "run and test" but for smooth sailing with hot module restore 
+and everything windows seems to be prefered for now.
+
+###Now give her a spin with
+```bash
+dotnet run
+```

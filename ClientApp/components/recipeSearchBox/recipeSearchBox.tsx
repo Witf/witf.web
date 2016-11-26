@@ -1,30 +1,24 @@
 ﻿import * as React from "react";
 import "./recipeSearchBox.scss";
-import { LoadIcon } from "../loadIcon";
-import { SearchIcon } from "../icons";
 import Autosuggest from "react-autosuggest";
 import { provide } from "redux-typed";
-import * as Recipies from "../../store/recipe-search";
+import { recipeSearchActions } from "../../store/actions/recipeSearchActions";
+import {LoadIcon} from "../icons/loadIcon";
+import * as H from "history";
 
-class RecipeSearchBox extends React.Component<SearchBoxProps, any> {
+class RecipeSearchBoxClass extends React.Component<SearchBoxProps, any> {
     constructor() {
         super();
-
         this.state = {
             value: '',
             suggestions: []
         };
     }
-    onChange(event, { newValue, method }) {
-        this.setState({
-            value: newValue
-        });
-    }
-
+    
+   
     renderSuggestion({suggestion}, query) {
         return <span>{suggestion}</span>;
     }
-
     componentDidMount() {
         this.input && this.input.focus();
     }
@@ -34,16 +28,43 @@ class RecipeSearchBox extends React.Component<SearchBoxProps, any> {
             this.input = autosuggest.input;
         }
     }
-
     queryRecipies() {
         this.props.queryRecipies(this.state.value);
     }
-
     onSubmitForm(e: React.SyntheticEvent<Event>) {
         e.preventDefault();
         this.queryRecipies();
     }
 
+    onSuggestionsFetchRequested({value}) {
+        const opts = value.split(" ");
+        this.props.querySuggestions({value: opts[opts.length - 1] });
+    }
+    updateLastWord(suggestedValue) {
+        const opts = this.state.value.split(" ");
+        let newValue;
+        if (opts.length > 1) {
+            newValue = opts.slice(0, opts.length - 1).join(" ") + " " + suggestedValue;
+        } else {
+            newValue = suggestedValue;
+        }
+        this.setState({
+            value: newValue
+        });
+    }
+    onSuggestionSelected(a, {suggestionValue}) {
+        this.updateLastWord(suggestionValue);
+    }
+    onChange(event, b) {
+        const { newValue, method } = b;
+        if (method !== "type") {
+            this.updateLastWord(newValue);
+        } else {
+            this.setState({
+                value: newValue
+            });
+        }
+    }
     render() {
         const inputProps = {
             placeholder: "",
@@ -57,9 +78,9 @@ class RecipeSearchBox extends React.Component<SearchBoxProps, any> {
                 <form onSubmit={this.onSubmitForm.bind(this)}>
                     <div className="searchBox">
                         <Autosuggest
-                            onSuggestionSelected={this.queryRecipies.bind(this)}
+                            onSuggestionSelected={this.onSuggestionSelected.bind(this)}
                             suggestions={this.props.suggestions}
-                            onSuggestionsFetchRequested={this.props.querySuggestions}
+                            onSuggestionsFetchRequested={this.onSuggestionsFetchRequested.bind(this)}
                             onSuggestionsClearRequested={this.props.clearSuggestions}
                             getSuggestionValue={({ suggestion }) => suggestion}
                             renderSuggestion={this.renderSuggestion}
@@ -75,11 +96,11 @@ class RecipeSearchBox extends React.Component<SearchBoxProps, any> {
 }
 
 const provider = provide(
-    (state: IApplicationState) => state.recipies,
-    Recipies.actionCreators
+    (state: IApplicationState) => state.recipeSearchsState,
+    recipeSearchActions
 ).withExternalProps<{
-
+    location: H.Location,
 }>();
 
 type SearchBoxProps = typeof provider.allProps;
-export default provider.connect(RecipeSearchBox as any);
+export const RecipeSearchBox = provider.connect(RecipeSearchBoxClass as any);

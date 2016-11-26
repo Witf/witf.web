@@ -1,11 +1,23 @@
-﻿interface IApplicationState {
-    recipies: IRecipeSearchsState;
+﻿interface IEntityMeta<T> {
+    data?: T;
+    loading?: boolean;
+    error?: boolean;
+    lastRecieved?: Date;
+}
+
+interface IApplicationState {
+    recipeSearchsState: IRecipeSearchsState;
+    recipeDetails: IRecipeDetailsState;
+}
+
+interface IRecipeDetailsState {
+    [key:string]:IEntityMeta<IRecipieDetails>;
 }
 
 interface IRecipeSearchsState {
     isLoading: boolean;
     suggestions: ISearchSuggestion[];
-    queryResults: Recipie[];
+    queryResults: IRecipie[];
     currentQuery: string;
 }
 
@@ -14,17 +26,27 @@ interface ISearchSuggestion {
     type: "word"|null;
 }
 
-interface Recipie {
+interface IRecipie {
     id: string;
     title: string;
     imageUrl: string;
     urlToRecipeAtSource: string;
     source: string;
     numberOfServings: string;
-    cookingTime: CookingTime;
+    cookingTime: ICookingTime;
 }
 
-interface CookingTime {
+interface IRecipieDetails extends IRecipie {
+    ingredients: IIngredient[];
+}
+
+interface IIngredient {
+    name: string;
+    quantity: number;
+    unit: string;
+}
+
+interface ICookingTime {
     minUsedTimeInMinutes: number;
     maxUsedTimeInMinutes: number;
 }
