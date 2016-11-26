@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "start": "webpack-dev-server --config webpack.config.js"
+    "start": "node server.js",
+    "start:dev": "webpack-dev-server --config webpack.config.js"
   },
   "name": "witfweb",
   "version": "0.0.1",
