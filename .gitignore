@@ -31,7 +31,7 @@ Obj/
 
 # Visual Studio 2015 cache/options directory
 .vs/
-/wwwroot/dist/**
+/wwwroot/scripts/dist/**
 /ClientApp/dist/**
 
 # Workaround for https://github.com/aspnet/JavaScriptServices/issues/235
