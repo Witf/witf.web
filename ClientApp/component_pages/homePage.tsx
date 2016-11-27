@@ -23,8 +23,7 @@ class Home extends React.Component<HomeProps, { searchText: string; }> {
 }
 
 const provider = provide(
-    (state: IApplicationState) => state.recipeSearchsState,
-    {}
+    (state: IApplicationState) => state.recipeSearchsState,{}
 ).withExternalProps<{
     location: H.Location,
     params: { q: string }

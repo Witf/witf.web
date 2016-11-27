@@ -14,6 +14,7 @@ export class LayoutPage extends React.Component<LayoutProps, void> {
                 <img className="headerImage" src="/static/images/food-kitchen-cutting-board-cooking-retina.jpg" />
             </div>
              { this.props.body }
+             
         </div>;
     }
 }

@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "charset": "utf8",
-    "baseUrl": ".",
+    "baseUrl": "./ClientApp",
     "moduleResolution": "node",
     "target": "es6",
     "jsx": "preserve",
@@ -16,7 +16,8 @@
     }
   },
   "exclude": [
-      "bin",
       "node_modules"
-  ]
+  ],
+  "awesomeTypescriptLoaderOptions": {
+  }
 }

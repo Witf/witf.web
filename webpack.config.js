@@ -2,66 +2,75 @@ var isDevBuild = process.argv.indexOf('--env.prod') < 0;
 var path = require('path');
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var nodeExternals = require('webpack-node-externals');
-var merge = require('webpack-merge');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 var allFilenamesExceptJavaScript = /\.(?!js(\?|$))([^.]+(\?|$))/;
 
-var clientBundleOutputDir = './wwwroot/scripts/dist';
+var entryPath = path.join(__dirname, 'ClientApp/boot-client.tsx' );
+var path = require('path');
+var webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+
+var isDevelopment = process.argv.indexOf('--development') !== -1;
+var entry = isDevelopment ? [
+  'webpack-hot-middleware/client?reload=true',
+  'react-hot-loader/patch',
+  entryPath
+] : entryPath;
+
+var plugins = [
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': JSON.stringify(isDevelopment ? 'development' : 'production'),
+            __DEV__: isDevelopment
+        }),
+        new HtmlWebpackPlugin({
+            template: 'wwwroot/index.ejs',
+            minify: {
+                removeComments: !isDevelopment,
+                collapseWhitespace: !isDevelopment
+            },
+            inject: true
+        })
+];
+
+isDevelopment && plugins.push(new webpack.HotModuleReplacementPlugin());
+
 var clientBundleConfig = {
-    devServer: {
-        historyApiFallBack: true,
-        // progress: true,
-        //hot: true,
-        //inline: true,
-        // https: true,
-        port: 8080,
-        contentBase: path.resolve(__dirname,'wwwroot'),
-        proxy: {
-            '/api/**': {
-                changeOrigin: true,
-                target: 'http://witf.apphb.com/api',
-                secure: false
-            }
-        }
-    },
+    cache: isDevelopment,
+    debug: isDevelopment,
+    plugins: plugins,
+    entry: entry,
+
     resolve: { extensions: [ '', '.js', '.jsx', '.ts', '.tsx' ] },
-    entry: { 'main-client': './ClientApp/boot-client.tsx' },
+    output: {
+        filename: 'bundle.js',
+        publicPath: '', 
+        path: path.join(__dirname, "wwwroot")
+    },
+    devtool: "source-map",
+    resolve: {
+        extensions: ["", ".webpack.js", ".web.js", ".ts", ".tsx", ".js"]
+    },
     module: {
+        preLoaders: [
+            // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
+            { test: /\.js$/, loader: "source-map-loader" }
+        ],
         loaders: [
-            { test: /\.tsx?$/, include: /ClientApp/, loader: 'babel-loader' },
-            { test: /\.tsx?$/, include: /ClientApp/, loader: 'ts', query: { silent: true } },
             {
                 test: /\.scss$/,
-                include: [path.resolve(__dirname, 'css')],
-                loader: ExtractTextPlugin.extract("style","css!sass")
+                exclude: [/(node_modules)/],
+                loaders: ["style-loader", "css-loader", "sass-loader"]
             },
             {
-                test: /\.scss$/,
-                include: [path.resolve(__dirname, 'ClientApp')],
-                exclude: [path.resolve(__dirname, 'css')],
-                loaders: ["style","css","sass"]
+                test: /\.ts(x?)$/,
+                loaders: ['babel', 'ts-loader'],
+                exclude: path.resolve(__dirname, 'node_modules'),
+                include: path.resolve(__dirname, "ClientApp"),
             },
             { test: /\.(png|jpg|jpeg|gif|svg)$/, loader: 'url', query: { limit: 25000 } }
         ]
     },
-    output: {
-        filename: '[name].js',
-        publicPath: '/scripts/dist/', // Webpack dev middleware, if enabled, handles requests for this URL prefix
-        path: path.join(__dirname, clientBundleOutputDir)
-    },
-    plugins: [
-        new ExtractTextPlugin("app.css")
-    ].concat(isDevBuild ? [
-        // Plugins that apply in development builds only
-        new webpack.SourceMapDevToolPlugin({
-            filename: '[file].map', // Remove this line if you prefer inline source maps
-            moduleFilenameTemplate: path.relative(clientBundleOutputDir, '[resourcePath]') // Point sourcemap entries to the original file locations on disk
-        })
-    ] : [
-        // Plugins that apply in production builds only
-        new webpack.optimize.OccurenceOrderPlugin(),
-        new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false } })
-    ])
+    target: 'web'
 };
 
 module.exports = clientBundleConfig;

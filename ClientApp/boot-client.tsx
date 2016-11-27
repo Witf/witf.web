@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import { syncHistoryWithStore } from 'react-router-redux';
 import routes from './routes';
 import configureStore from './configureStore';
+import { AppContainer } from "react-hot-loader";
 
 // Get the application-wide store instance, prepopulating with state from the server where available.
 const initialState = (window as any).initialReduxState as IApplicationState;
@@ -15,11 +16,13 @@ const history = syncHistoryWithStore(browserHistory, store);
 // This code starts up the React app when it runs in a browser. It sets up the routing configuration
 // and injects the app into a DOM element.
 const root = document.createElement("div");
-root.id = "witFridge_root";
+root.id = "app";
 document.body.appendChild(root);
 ReactDOM.render(
-    <Provider store={ store }>
-        <Router history={ history } children={ routes } />
-    </Provider>,
+    <AppContainer>
+        <Provider store={ store }>
+            <Router history={ history } children={ routes } />
+        </Provider>
+    </AppContainer>,
     root
 );
