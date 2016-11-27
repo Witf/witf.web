@@ -13,7 +13,7 @@ export default function configureStore(initialState?: IApplicationState) {
         applyMiddleware(thunk, typedToPlain),
         devToolsExtension ? devToolsExtension() : f => f 
     )(createStore);
-
+  
     // Combine all reducers and instantiate the app-wide store instance
     const allReducers = buildRootReducer(Store.reducers);
     const store = createStoreWithMiddleware(allReducers, initialState) as Redux.Store<IApplicationState>;
@@ -27,6 +27,7 @@ export default function configureStore(initialState?: IApplicationState) {
     }
       
     return store;
+    
 }
 
 function buildRootReducer(allReducers) {
