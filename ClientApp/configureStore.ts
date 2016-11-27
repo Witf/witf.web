@@ -19,7 +19,6 @@ export default function configureStore(initialState?: IApplicationState) {
     const store = createStoreWithMiddleware(allReducers, initialState) as Redux.Store<IApplicationState>;
 
     // Enable Webpack hot module replacement for reducers
-    debugger;
     if (module.hot) {
         module.hot.accept('./store/store', () => {
             const nextRootReducer = require<typeof Store>('./store/store');
