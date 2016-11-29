@@ -25,7 +25,7 @@ export const recipeDetailsActions = {
     loadRecipeDetails: (id:string): ActionCreator => (dispatch, getState) => {
         dispatch(new LoadingRecipeDetailsAction(id));
 
-        const fetchTask = fetch(`/api/recipe/${encodeURIComponent(id)}`)
+        const fetchTask = fetch(`http://witf.apphb.com/api/recipe/${encodeURIComponent(id)}`)
             .then(response => response.json())
             .then((recipie: IRecipieDetails) => {
                 dispatch(new RecievedRecipeDetailsAction(id, recipie));

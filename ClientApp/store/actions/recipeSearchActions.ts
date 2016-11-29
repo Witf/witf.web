@@ -35,7 +35,7 @@ export class ClearRecipeSearchSuggestionsAction extends Action {
 
 export const recipeSearchActions = {
     queryRecipies: (q: string): ActionCreator => (dispatch, getState) => {
-        let fetchTask = fetch(`/api/findRecipes?q=${q}`)
+        let fetchTask = fetch(`http://witf.apphb.com/api/findRecipes?q=${q}`)
             .then(response => response.json())
             .then((data: { recipes: IRecipie[], skipMarker: string }) => {
                 dispatch(new RecievedRecipiQueryAction(q, data.recipes));
@@ -45,7 +45,7 @@ export const recipeSearchActions = {
         dispatch(new QueryRecipesAction(q));
     },
     querySuggestions: ({value}): ActionCreator => (dispatch, getState) => {
-        let fetchTask = fetch(`/api/autocomplete?w=${value}`)
+        let fetchTask = fetch(`http://witf.apphb.com/api/autocomplete?w=${value}`)
             .then(response => response.json())
             .then((data: ISearchSuggestion[]) => {
                 dispatch(new RecievedRecipeSearchSuggestionsAction(value, data));
