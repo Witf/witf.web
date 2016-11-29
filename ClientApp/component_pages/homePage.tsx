@@ -15,7 +15,10 @@ class Home extends React.Component<HomeProps, { searchText: string; }> {
             <div id="page_home">
                 <div className="page">
                     <RecipeSearchBox location={this.props.location}/>
-                    <RecipesSearchResultList searching={this.props.isLoading} query={this.props.currentQuery} recipies={this.props.queryResults}/>
+                    <RecipesSearchResultList 
+                    searching={this.props.isLoading} 
+                    query={this.props.currentQuery} 
+                    recipies={this.props.queryResults}/>
                 </div>
             </div>
         );

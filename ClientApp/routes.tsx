@@ -4,12 +4,18 @@ import { LayoutPage } from "./component_pages/layoutPage";
 import { HomePage } from "./component_pages/homePage"; 
 import { RecipePage } from "./component_pages/recipePage";
 
-export default <Route component={ LayoutPage }>
-    <Route path="/" components={{ body: HomePage }} />
-    <Route path="recipe/:id" components={{ body: RecipePage }} />
-</Route>;
+// export default <Route component={ LayoutPage }>
+//     <Route path="/" components={{ body: HomePage }} />
+//     <Route path="recipe/:id" components={{ body: RecipePage }} />
+// </Route>;
 
-// Enable Hot Module Replacement (HMR)
-if (module && module.hot) {
-    module.hot.accept();
+export default {
+    component: LayoutPage,
+    childRoutes: [
+        { path: '/', components:{ body: HomePage } },
+        {
+            path: '/recipe/:id',
+            components:{ body: RecipePage },
+        }
+    ]
 }

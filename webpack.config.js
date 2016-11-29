@@ -2,13 +2,11 @@ var isDevBuild = process.argv.indexOf('--env.prod') < 0;
 var path = require('path');
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
 var allFilenamesExceptJavaScript = /\.(?!js(\?|$))([^.]+(\?|$))/;
 
 var entryPath = path.join(__dirname, 'ClientApp/boot-client.tsx' );
 var path = require('path');
 var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 var isDevelopment = process.argv.indexOf('--development') !== -1;
 var entry = isDevelopment ? [
@@ -21,14 +19,6 @@ var plugins = [
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify(isDevelopment ? 'development' : 'production'),
             __DEV__: isDevelopment
-        }),
-        new HtmlWebpackPlugin({
-            template: 'wwwroot/index.ejs',
-            minify: {
-                removeComments: !isDevelopment,
-                collapseWhitespace: !isDevelopment
-            },
-            inject: true
         })
 ];
 
@@ -39,12 +29,11 @@ var clientBundleConfig = {
     debug: isDevelopment,
     plugins: plugins,
     entry: entry,
-
     resolve: { extensions: [ '', '.js', '.jsx', '.ts', '.tsx' ] },
     output: {
-        filename: 'bundle.js',
-        publicPath: '', 
-        path: path.join(__dirname, "wwwroot")
+        path: path.resolve("./wwwroot/Scripts/dist"),
+        publicPath: '/Scripts/dist/',
+        filename: 'bundle.js'
     },
     devtool: "source-map",
     resolve: {
