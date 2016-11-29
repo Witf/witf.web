@@ -10,8 +10,7 @@
   "version": "0.0.1",
   "dependencies": {
     "express": "^4.14.0",
-    "express-http-proxy": "^0.10.1",
-    "yarn": "^0.17.6"
+    "express-http-proxy": "^0.10.1"
   },
   "devDependencies": {
   "@types/react": "^0.14.29",
