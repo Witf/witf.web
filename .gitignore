@@ -1,8 +1,9 @@
 # Idea (webstorm) config files
 .idea/
-
+.vscode/
 # Visual Studio 2015 cache/options directory
 .vs/
+
 /wwwroot/scripts/dist/**
 /ClientApp/dist/**
 /yarn.lock
