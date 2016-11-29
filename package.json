@@ -4,6 +4,7 @@
     "node": "6.9.1"
   },
   "scripts": {
+    "dev": "node server.js --development",
     "start": "npm run build && node server.js --production",
     "build": "node node_modules/webpack/bin/webpack.js --config webpack.config.js"
   },
