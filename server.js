@@ -3,7 +3,7 @@ var path = require('path');
 var fs = require("fs");
 /* eslint-disable no-console */
 
-const port = 3000;
+const port = process.env.port || 3000;
 const app = express();
 
 var isDevelopment = process.argv.indexOf('--development') !== -1;
