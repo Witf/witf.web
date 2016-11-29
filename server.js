@@ -23,7 +23,7 @@ if(isDevelopment){
 
 app.use('/', express.static(path.join( __dirname, './wwwroot/')));
 
-app.listen(isDevelopment ? port : 80, function(err) {
+app.listen(port, function(err) {
     if (err)
         console.log(err);
 });
