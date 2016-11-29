@@ -1,6 +1,5 @@
 var express = require('express');
 var path = require('path');
-var open = require("open");
 var fs = require("fs");
 /* eslint-disable no-console */
 
