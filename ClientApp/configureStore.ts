@@ -1,6 +1,5 @@
 import { createStore, applyMiddleware, compose, combineReducers, GenericStoreEnhancer } from 'redux';
 import thunk from 'redux-thunk';
-import { routerReducer } from 'react-router-redux';
 import * as Store from './store/store';
 import { typedToPlain } from 'redux-typed';
 
@@ -31,5 +30,5 @@ export default function configureStore(initialState?: IApplicationState) {
 }
 
 function buildRootReducer(allReducers) {
-    return combineReducers<IApplicationState>(Object.assign({}, allReducers, { routing: routerReducer }));
+    return combineReducers<IApplicationState>(Object.assign({}, allReducers));
 }

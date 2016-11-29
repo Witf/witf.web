@@ -11,7 +11,6 @@ var webpack = require('webpack');
 var isDevelopment = process.argv.indexOf('--development') !== -1;
 var entry = isDevelopment ? [
   'webpack-hot-middleware/client?reload=true',
-  'react-hot-loader/patch',
   entryPath
 ] : entryPath;
 
@@ -52,8 +51,12 @@ var clientBundleConfig = {
             },
             {
                 test: /\.ts(x?)$/,
-                loaders: ['babel', 'ts-loader'],
-                exclude: path.resolve(__dirname, 'node_modules'),
+                loaders: [
+                    'react-hot',
+                    'babel',
+                    'ts-loader'
+                ],
+                exclude: [/(node_modules)/],
                 include: path.resolve(__dirname, "ClientApp"),
             },
             { test: /\.(png|jpg|jpeg|gif|svg)$/, loader: 'url', query: { limit: 25000 } }

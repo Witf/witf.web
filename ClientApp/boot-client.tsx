@@ -5,8 +5,6 @@ import { browserHistory, Router } from 'react-router';
 import { Provider } from 'react-redux';
 import routes from './routes';
 import configureStore from './configureStore';
-import { AppContainer } from "react-hot-loader";
-
 // Get the application-wide store instance, prepopulating with state from the server where available.
 const initialState = (window as any).initialReduxState as IApplicationState;
 const store = configureStore(initialState);
@@ -15,11 +13,9 @@ const store = configureStore(initialState);
 // and injects the app into a DOM element.
 const root = document.getElementById("app");
 ReactDOM.render(
-    <AppContainer>
         <Provider store={ store }>
             <Router history={ browserHistory } children={ routes } /> 
-        </Provider>
-    </AppContainer>,
+        </Provider>,
     root
 );
 // Enable Hot Module Replacement (HMR)

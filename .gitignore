@@ -1,6 +1,7 @@
 # Idea (webstorm) config files
 .idea/
 .vscode/
+.awcache/
 # Visual Studio 2015 cache/options directory
 .vs/
 
