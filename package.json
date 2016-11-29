@@ -4,8 +4,7 @@
    "node": "6.9.1"
    },
   "scripts": {
-    "start": "node server.js",
-    "start:dev": "webpack-dev-server --config webpack.config.js --hot --inline"
+    "start": "node server.js --production"
   },
   "name": "witfweb",
   "version": "0.0.1",
@@ -15,7 +14,7 @@
     "yarn": "^0.17.6"
   },
   "devDependencies": {
-"@types/react": "^0.14.29",
+  "@types/react": "^0.14.29",
     "@types/react-dom": "^0.14.14",
     "@types/react-redux": "^4.4.29",
     "@types/react-router": "^2.0.30",
