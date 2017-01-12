@@ -17,7 +17,6 @@
     "@types/react-router": "^2.0.30",
     "@types/react-router-redux": "^4.0.30",
     "@types/redux": "3.5.27",
-    "@types/redux-thunk": "^2.1.28",
     "@types/source-map": "^0.1.28",
     "@types/uglify-js": "^2.0.27",
     "@types/webpack": "^1.12.35",
@@ -32,6 +31,8 @@
     "css-loader": "^0.23.1",
     "domain-task": "^2.0.1",
     "event-source-polyfill": "^0.0.7",
+    "express": "^4.14.0",
+    "express-http-proxy": "^0.10.1",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.8.5",
     "ignore-loader": "^0.1.2",
@@ -51,13 +52,11 @@
     "source-map-loader": "^0.1.5",
     "style-loader": "^0.13.0",
     "ts-loader": "^0.8.2",
-    "typescript": "2.0.3",
+    "typescript": "^2.1.5",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.2",
     "webpack-dev-middleware": "^1.8.4",
-    "webpack-hot-middleware": "^2.13.2",
-    "express": "^4.14.0",
-    "express-http-proxy": "^0.10.1"
+    "webpack-hot-middleware": "^2.13.2"
   },
   "license": "MIT"
 }
