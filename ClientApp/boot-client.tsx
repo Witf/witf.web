@@ -1,7 +1,7 @@
 import './css/main.scss';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { browserHistory, Router } from 'react-router';
+import { hashHistory, Router } from 'react-router';
 import { Provider } from 'react-redux';
 import routes from './routes';
 import configureStore from './configureStore';
@@ -14,12 +14,12 @@ const store = configureStore(initialState);
 const root = document.getElementById("app");
 ReactDOM.render(
         <Provider store={ store }>
-            <Router history={ browserHistory } children={ routes } /> 
+            <Router history={ hashHistory } children={ routes } /> 
         </Provider>,
     root
 );
 // Enable Hot Module Replacement (HMR)
-if (module && module.hot) {
+if ((module && module.hot) || location.host.indexOf("localhost") > -1) {
     console.log("Enabeling HMR");
     module.hot.accept();
 }
