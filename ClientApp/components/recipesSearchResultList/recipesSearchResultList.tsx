@@ -3,7 +3,7 @@ import "./recipesSearchResultList.scss";
 import { RecipeCard } from "../recipeCard/recipeCard";
 
 export interface IRecipesSearchResultListProps {
-    recipies: IRecipie[];
+    recipies: IRecipe[];
     query: string;
     searching: boolean;
 }

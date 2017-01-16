@@ -3,11 +3,7 @@ import { Router, Route, HistoryBase } from "react-router";
 import { LayoutPage } from "./component_pages/layoutPage";
 import { HomePage } from "./component_pages/homePage"; 
 import { RecipePage } from "./component_pages/recipePage";
-
-// export default <Route component={ LayoutPage }>
-//     <Route path="/" components={{ body: HomePage }} />
-//     <Route path="recipe/:id" components={{ body: RecipePage }} />
-// </Route>;
+import { DirectionsPage } from "./component_pages/directions";
 
 export default {
     component: LayoutPage,
@@ -16,6 +12,10 @@ export default {
         {
             path: '/recipe/:id',
             components:{ body: RecipePage },
+        },
+        {
+            path: '/directions',
+            components:{ body: DirectionsPage },
         }
     ]
 }

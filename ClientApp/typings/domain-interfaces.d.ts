@@ -6,18 +6,18 @@
 }
 
 interface IApplicationState {
-    recipeSearchsState: IRecipeSearchsState;
+    recipeSearch: IRecipeSearchsState;
     recipeDetails: IRecipeDetailsState;
 }
 
 interface IRecipeDetailsState {
-    [key:string]:IEntityMeta<IRecipieDetails>;
+    [key:string]:IEntityMeta<IRecipeDetails>;
 }
 
 interface IRecipeSearchsState {
     isLoading: boolean;
     suggestions: ISearchSuggestion[];
-    queryResults: IRecipie[];
+    queryResults: IRecipe[];
     currentQuery: string;
 }
 
@@ -26,7 +26,7 @@ interface ISearchSuggestion {
     type: "word"|null;
 }
 
-interface IRecipie {
+interface IRecipe {
     id: string;
     title: string;
     imageUrl: string;
@@ -36,7 +36,7 @@ interface IRecipie {
     cookingTime: ICookingTime;
 }
 
-interface IRecipieDetails extends IRecipie {
+interface IRecipeDetails extends IRecipe {
     ingredients: IIngredient[];
 }
 

@@ -9,8 +9,8 @@ export class QueryRecipesAction extends Action {
     }
 }
 @typeName("RecipeSearch_RECIEVED_RECIPIES_QUERY")
-export class RecievedRecipiQueryAction extends Action {
-    constructor(public query: string, public recipies: IRecipie[]) {
+export class RecievedRecipeQueryAction extends Action {
+    constructor(public query: string, public recipies: IRecipe[]) {
         super();
     }
 }
@@ -35,17 +35,19 @@ export class ClearRecipeSearchSuggestionsAction extends Action {
 
 export const recipeSearchActions = {
     queryRecipies: (q: string): ActionCreator => (dispatch, getState) => {
-        let fetchTask = fetch(`http://witf.apphb.com/api/findRecipes?q=${q}`)
+        let fetchTask = fetch(`http://localhost:1234/api/findRecipes?q=${q}`)
+        // let fetchTask = fetch(`http://witf.apphb.com/api/findRecipes?q=${q}`)
             .then(response => response.json())
-            .then((data: { recipes: IRecipie[], skipMarker: string }) => {
-                dispatch(new RecievedRecipiQueryAction(q, data.recipes));
+            .then((data: { recipes: IRecipe[], skipMarker: string }) => {
+                dispatch(new RecievedRecipeQueryAction(q, data.recipes));
             });
 
         addTask(fetchTask); // Ensure server-side prerendering waits for this to complete
         dispatch(new QueryRecipesAction(q));
     },
     querySuggestions: ({value}): ActionCreator => (dispatch, getState) => {
-        let fetchTask = fetch(`http://witf.apphb.com/api/autocomplete?w=${value}`)
+        let fetchTask = fetch(`http://localhost:1234/api/autocomplete?w=${value}`)
+//        let fetchTask = fetch(`http://witf.apphb.com/api/autocomplete?w=${value}`)
             .then(response => response.json())
             .then((data: ISearchSuggestion[]) => {
                 dispatch(new RecievedRecipeSearchSuggestionsAction(value, data));

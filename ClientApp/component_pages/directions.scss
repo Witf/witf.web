@@ -1,0 +1,19 @@
+#page_directions {
+    height: 100%;
+    overflow: hidden;
+    padding: 50px;
+
+    iframe {
+	    border: none;
+        height: 100%;
+        width: 100%;
+    }
+
+    i {
+        font-size:128px; 
+        position: absolute; 
+        left:50%; 
+        top: 50%; 
+        z-index: -1;
+    }
+}

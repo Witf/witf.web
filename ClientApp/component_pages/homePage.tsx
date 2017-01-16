@@ -16,9 +16,9 @@ class Home extends React.Component<HomeProps, { searchText: string; }> {
                 <div className="page">
                     <RecipeSearchBox location={this.props.location}/>
                     <RecipesSearchResultList 
-                    searching={this.props.isLoading} 
-                    query={this.props.currentQuery} 
-                    recipies={this.props.queryResults}/>
+                        searching={this.props.isLoading} 
+                        query={this.props.currentQuery} 
+                        recipies={this.props.queryResults}/>
                 </div>
             </div>
         );
@@ -26,7 +26,7 @@ class Home extends React.Component<HomeProps, { searchText: string; }> {
 }
 
 const provider = provide(
-    (state: IApplicationState) => state.recipeSearchsState,{}
+    (state: IApplicationState) => state.recipeSearch,{}
 ).withExternalProps<{
     location: H.Location,
     params: { q: string }

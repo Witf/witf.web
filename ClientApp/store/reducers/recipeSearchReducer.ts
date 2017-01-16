@@ -1,5 +1,6 @@
 ﻿import { isActionType, Reducer } from 'redux-typed';
 import * as Actions from "../actions/recipeSearchActions";
+
 const unloadedState: IRecipeSearchsState = {
     isLoading: false,
     suggestions: [],
@@ -16,7 +17,7 @@ export const recipeSearchReducer: Reducer<IRecipeSearchsState> = (state, action)
             queryResults: state.queryResults
         };
     }
-    if (isActionType(action, Actions.RecievedRecipiQueryAction)) {
+    if (isActionType(action, Actions.RecievedRecipeQueryAction)) {
         return {
             suggestions: state.suggestions,
             currentQuery:

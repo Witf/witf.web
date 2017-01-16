@@ -10,7 +10,7 @@ export class LoadingRecipeDetailsAction extends Action {
 }
 @typeName("recipeDetails_LoadedRecipeDetailsAction")
 export class RecievedRecipeDetailsAction extends Action {
-    constructor(public id: string, public recipie: IRecipieDetails) {
+    constructor(public id: string, public recipe: IRecipeDetails) {
         super();
     }
 }
@@ -25,10 +25,11 @@ export const recipeDetailsActions = {
     loadRecipeDetails: (id:string): ActionCreator => (dispatch, getState) => {
         dispatch(new LoadingRecipeDetailsAction(id));
 
-        const fetchTask = fetch(`http://witf.apphb.com/api/recipe/${encodeURIComponent(id)}`)
+        // const fetchTask = fetch(`http://witf.apphb.com/api/recipe/${encodeURIComponent(id)}`)
+        const fetchTask = fetch(`http://localhost:1234/api/recipe/${encodeURIComponent(id)}`)
             .then(response => response.json())
-            .then((recipie: IRecipieDetails) => {
-                dispatch(new RecievedRecipeDetailsAction(id, recipie));
+            .then((recipe: IRecipeDetails) => {
+                dispatch(new RecievedRecipeDetailsAction(id, recipe));
             });
 
         addTask(fetchTask);

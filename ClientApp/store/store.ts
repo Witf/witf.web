@@ -6,7 +6,7 @@ import { recipeDetailsReducer } from "./reducers/recipeDetailsReducer";
 // the reducer with the matching name. It's important that the names match exactly, and that the reducer
 // acts on the corresponding ApplicationState property type.
 export const reducers = {
-    recipeSearchsState: recipeSearchReducer,
+    recipeSearch: recipeSearchReducer,
     recipeDetails: recipeDetailsReducer
 };
  

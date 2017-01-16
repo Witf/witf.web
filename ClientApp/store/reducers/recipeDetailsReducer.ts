@@ -1,5 +1,6 @@
 ﻿import { isActionType, Reducer } from 'redux-typed';
 import * as Actions from "../actions/recipeDetailsActions";
+
 const unloadedState: IRecipeDetailsState = {};
 
 function init(id: string, state: IRecipeDetailsState) {
@@ -10,7 +11,7 @@ function init(id: string, state: IRecipeDetailsState) {
     return state;
 }
 
-function update(id: string, state: IRecipeDetailsState, newObject: IEntityMeta<IRecipieDetails>) {
+function update(id: string, state: IRecipeDetailsState, newObject: IEntityMeta<IRecipeDetails>) {
     init(id, state);
     state[id] = Object.assign({}, state[id], newObject);
     return Object.assign({}, state);
@@ -28,7 +29,7 @@ export const recipeDetailsReducer: Reducer<IRecipeDetailsState> = (state, action
     }
 
     if (isActionType(action, Actions.RecievedRecipeDetailsAction)) {
-        state = update(action.id, state, {data: action.recipie, loading: false });
+        state = update(action.id, state, {data: action.recipe, loading: false });
         return state;
     }
 

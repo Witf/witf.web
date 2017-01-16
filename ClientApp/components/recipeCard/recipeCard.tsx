@@ -2,7 +2,7 @@
 import "./recipeCard.scss";
 import { Router, Route, Link } from "react-router";
 
-export function RecipeCard({recipe}: { recipe: IRecipie }) {
+export function RecipeCard({recipe}: { recipe: IRecipe }) {
 
     const imgStyle = { backgroundImage: `url("${recipe.imageUrl}")` };
 

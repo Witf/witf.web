@@ -96,7 +96,7 @@ class RecipeSearchBoxClass extends React.Component<SearchBoxProps, any> {
 }
 
 const provider = provide(
-    (state: IApplicationState) => state.recipeSearchsState,
+    (state: IApplicationState) => state.recipeSearch,
     recipeSearchActions
 ).withExternalProps<{
     location: H.Location,
