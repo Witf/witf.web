@@ -1,14 +1,15 @@
 #page_recipe {
     word-wrap: break-word;
     white-space: pre-wrap;
-    padding: 20px; 
+    padding-right: 1px; 
     margin-top: 25px; 
 
     .recipe {
 
-        margin-left: 25%;
-        margin-right: 25%;
-        margin-top: 10%;
+        margin-left: 60%;
+        margin-right: 0%;
+        margin-top: 130px;
+        margin-bottom: -40px;
         position:relative;
         -webkit-transition: height 0.5s; /* Safari */
         transition: height 0.5s;
@@ -22,6 +23,8 @@
         }
 
         .recipe-title {
+
+            a {
             color:white;
             opacity: 0.9;
             top:0;
@@ -34,13 +37,29 @@
             white-space: nowrap;    
             text-shadow: -0.5px -0.5px 0 #000, 0px 0.5px 0 #000, 0.5px 0px 0 #000, 0px 0px 0 #000;
             font-size: 15px;
-            font-family: "TrajanPro";
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
-            h4 {
-                text-align: left;
+                h4 {
+                    text-align: left;
+                }
             }
         }
 
+    }
+
+    .headers {
+        height: 40px;
+        width: 60%;
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+
+        .content {
+            font-size: 20px;
+            font-family: sans-serif;
+            font-style: italic;
+            margin-left: 5px;
+        }
     }
 
 

@@ -4,6 +4,7 @@ import * as H from "history";
 import "./recipePage.scss";
 import {recipeDetailsActions} from "../store/actions/recipeDetailsActions";
 import { Router, Route, Link } from "react-router";
+import { Ingredients } from "../components/ingredients/ingredients";
 
 class RecipePageClass extends React.Component<RecipePageProps, any>{
 
@@ -20,24 +21,26 @@ class RecipePageClass extends React.Component<RecipePageProps, any>{
             if (!!detailsMeta && !!detailsMeta.data) {
 
                 var recipe = detailsMeta.data;
-                var recipeInFrame = !recipe.urlToRecipeAtSource.startsWith('http://www.frukt.no') ? "" : "displayNone";
-                var recipeOutsideOfFrame = recipeInFrame === '' ? "displayNone" : "";
+
+                let recipeTitle = null;
+
+                if (!recipe.urlToRecipeAtSource.startsWith('http://www.frukt.no')) {
+                    recipeTitle = <div className="recipe-title"><Link alt={recipe.title} to={{ pathname : `directions`, query : {urlToRecipeAtSource: recipe.urlToRecipeAtSource} }}><h4>{recipe.title}</h4></Link></div>;
+                } else {
+                    recipeTitle = <div className="recipe-title"><a href={recipe.urlToRecipeAtSource} target="_blank"><h4>{recipe.title}</h4></a></div>;
+                }
 
                 return <div id="page_recipe">
 
                     <div className="recipe">                    
                         <div style={{backgroundImage: "url(" + recipe.imageUrl + ")"}} className="thumb"></div>
-			            <div className="recipe-title"><h4>{recipe.title}</h4></div>
-                        <div className="nav-container">
-                            <nav>
-                                <ul>
-                                    <li><a href="#"><div>Ingredienser</div><div className="fact">{recipe.ingredients.length}</div></a></li>
-                                    <li className={recipeInFrame}><Link alt={recipe.title} to={{ pathname : `directions`, query : {urlToRecipeAtSource: recipe.urlToRecipeAtSource} }}><div>Oppskrift</div><div className="fact"><i className="fa fa-clock-o"></i> {recipe.cookingTime.maxUsedTimeInMinutes} min</div></Link></li>
-                                    <li className={recipeOutsideOfFrame}><a href={recipe.urlToRecipeAtSource} target="_blank"><div>Oppskrift</div><div className="fact"><i className="fa fa-clock-o"></i> {recipe.cookingTime.maxUsedTimeInMinutes} min</div></a></li>
-                                </ul>
-                            </nav>
-                        </div>
+                        {recipeTitle}                        
                     </div>
+                    <div className="headers">
+                        <div className="content"><span className="fact">{recipe.ingredients.length}</span> Ingredienser</div>
+                        <div className="content"><span className="fact"><i className="fa fa-clock-o"></i> {recipe.cookingTime.maxUsedTimeInMinutes}</span> Minutter</div>
+                    </div>
+                    <Ingredients ingredients={recipe.ingredients} />
                 </div>; 
             }
 
