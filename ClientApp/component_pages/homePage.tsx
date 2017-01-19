@@ -3,6 +3,7 @@ import { provide } from "redux-typed";
 import { RecipeSearchBox } from "../components/recipeSearchBox/recipeSearchBox";
 import "./homePage.scss";
 import * as H from "history";
+import {Header} from "../components/header/header";
 import { RecipesSearchResultList } from "../components/recipesSearchResultList/recipesSearchResultList";
 import { recipeSearchActions } from "../store/actions/recipeSearchActions";
 
@@ -15,6 +16,7 @@ class Home extends React.Component<HomeProps, { searchText: string; }> {
         return (
             <div id="page_home">
                 <div className="page">
+                    <Header />    
                     <RecipeSearchBox location={this.props.location}/>
                     <RecipesSearchResultList 
                         searching={this.props.isLoading} 
