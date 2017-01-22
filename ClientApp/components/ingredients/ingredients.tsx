@@ -16,7 +16,7 @@ export class Ingredients extends React.Component<IIngredientsProps, any> {
                 <div>
                     {this.props.ingredients.map((ingredient, i) => (
                         <div className="ingredient" key={i}>
-                            {ingredient.quantity ? <span>{ingredient.quantity} {ingredient.unit}</span> : null}
+                            {ingredient.quantity ? <span>{ingredient.quantity} {ingredient.unit} </span> : null}
                             <span className="name">{ingredient.name}</span>
                         </div>
                     ))}

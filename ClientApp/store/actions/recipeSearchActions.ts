@@ -8,7 +8,7 @@ export class QueryRecipesAction extends Action {
         super();
     }
 }
-@typeName("RecipeSearch_RECIEVED_RECIPIES_QUERY")
+@typeName("RecipeSearch_RECIEVED_RECIPES_QUERY")
 export class RecievedRecipeQueryAction extends Action {
     constructor(public query: string, public recipies: IRecipe[]) {
         super();
