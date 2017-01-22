@@ -42,7 +42,6 @@ export const recipeSearchActions = {
                 dispatch(new CompletedQueryRecipesAction(q, data.recipes));
             });
 
-        addTask(fetchTask); // Ensure server-side prerendering waits for this to complete
         dispatch(new BeginQueryRecipesAction(q));
     },
     querySuggestions: ({value}): ActionCreator => (dispatch, getState) => {
@@ -52,7 +51,7 @@ export const recipeSearchActions = {
             .then((data: ISearchSuggestion[]) => {
                 dispatch(new CompletedRecipeSearchSuggestionsAction(value, data));
             });
-        addTask(fetchTask); // Ensure server-side prerendering waits for this to complete
+
         dispatch(new BeginQueryRecipeSearchSuggestionsAction(value));
     },
     clearSuggestions: (): ActionCreator => (dispatch, getState) => {

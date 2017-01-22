@@ -18,7 +18,7 @@ function update(id: string, state: IRecipeDetailsState, newObject: IEntityMeta<I
 }
 
 export const recipeDetailsReducer: Reducer<IRecipeDetailsState> = (state, action) => {
-    if (isActionType(action, Actions.LoadingRecipeDetailsAction)) {
+    if (isActionType(action, Actions.BeginLoadingRecipeDetailsAction)) {
         state = update(action.id, state, { loading: true });
         return state;
     }
@@ -28,7 +28,7 @@ export const recipeDetailsReducer: Reducer<IRecipeDetailsState> = (state, action
         return state;
     }
 
-    if (isActionType(action, Actions.RecievedRecipeDetailsAction)) {
+    if (isActionType(action, Actions.CompletedLoadingRecipeDetailsAction)) {
         state = update(action.id, state, {data: action.recipe, loading: false });
         return state;
     }
