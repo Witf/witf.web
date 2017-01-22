@@ -54,13 +54,7 @@ class RecipePageClass extends React.Component<RecipePageProps, any>{
                         </div>
                     </div>
 
-                    <div className="container-fluid">
-                        <div className="col-md-3">
-                            <Ingredients ingredients={recipe.ingredients} />
-                        </div>
-                        <div className="col-md-3">
-                    </div>
-                    </div>
+                    <Ingredients ingredients={recipe.ingredients} />
                 </div>; 
             }
 
