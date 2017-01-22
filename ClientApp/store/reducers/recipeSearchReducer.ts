@@ -9,7 +9,7 @@ const unloadedState: IRecipeSearchsState = {
 };
 
 export const recipeSearchReducer: Reducer<IRecipeSearchsState> = (state, action) => {
-    if (isActionType(action, Actions.QueryRecipesAction)) {
+    if (isActionType(action, Actions.BeginQueryRecipesAction)) {
         return {
             suggestions: state.suggestions,
             currentQuery: action.query,
@@ -17,7 +17,7 @@ export const recipeSearchReducer: Reducer<IRecipeSearchsState> = (state, action)
             queryResults: state.queryResults
         };
     }
-    if (isActionType(action, Actions.RecievedRecipeQueryAction)) {
+    if (isActionType(action, Actions.CompletedQueryRecipesAction)) {
         return {
             suggestions: state.suggestions,
             currentQuery:
@@ -26,7 +26,7 @@ export const recipeSearchReducer: Reducer<IRecipeSearchsState> = (state, action)
             queryResults: action.recipies
         };
     }
-    if (isActionType(action, Actions.RecievedRecipeSearchSuggestionsAction)) {
+    if (isActionType(action, Actions.CompletedRecipeSearchSuggestionsAction)) {
         return {
             suggestions: action.suggestions,
             currentQuery: state.currentQuery,

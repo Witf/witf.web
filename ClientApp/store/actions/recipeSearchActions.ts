@@ -3,25 +3,25 @@ import { fetch, addTask } from 'domain-task';
 import { ActionCreator } from "../store";
 
 @typeName("RecipeSearch_QUERY_RECIPES")
-export class QueryRecipesAction extends Action {
+export class BeginQueryRecipesAction extends Action {
     constructor(public query: string) {
         super();
     }
 }
 @typeName("RecipeSearch_RECIEVED_RECIPES_QUERY")
-export class RecievedRecipeQueryAction extends Action {
+export class CompletedQueryRecipesAction extends Action {
     constructor(public query: string, public recipies: IRecipe[]) {
         super();
     }
 }
 @typeName("RecipeSearch_QUERY_RECIPE_SEARCH_SUGGESTIONS")
-export class QueryRecipeSearchSuggestionsAction extends Action {
+export class BeginQueryRecipeSearchSuggestionsAction extends Action {
     constructor(public query: string) {
         super();
     }
 }
 @typeName("RecipeSearch_RECIEVED_RECIPE_SEARCH_SUGGESTIONS")
-export class RecievedRecipeSearchSuggestionsAction extends Action {
+export class CompletedRecipeSearchSuggestionsAction extends Action {
     constructor(public query: string, public suggestions: ISearchSuggestion[]) {
         super();
     }
@@ -39,21 +39,21 @@ export const recipeSearchActions = {
         // let fetchTask = fetch(`http://witf.apphb.com/api/findRecipes?q=${q}`)
             .then(response => response.json())
             .then((data: { recipes: IRecipe[], skipMarker: string }) => {
-                dispatch(new RecievedRecipeQueryAction(q, data.recipes));
+                dispatch(new CompletedQueryRecipesAction(q, data.recipes));
             });
 
         addTask(fetchTask); // Ensure server-side prerendering waits for this to complete
-        dispatch(new QueryRecipesAction(q));
+        dispatch(new BeginQueryRecipesAction(q));
     },
     querySuggestions: ({value}): ActionCreator => (dispatch, getState) => {
         let fetchTask = fetch(`http://localhost:1234/api/autocomplete?w=${value}`)
 //        let fetchTask = fetch(`http://witf.apphb.com/api/autocomplete?w=${value}`)
             .then(response => response.json())
             .then((data: ISearchSuggestion[]) => {
-                dispatch(new RecievedRecipeSearchSuggestionsAction(value, data));
+                dispatch(new CompletedRecipeSearchSuggestionsAction(value, data));
             });
         addTask(fetchTask); // Ensure server-side prerendering waits for this to complete
-        dispatch(new QueryRecipeSearchSuggestionsAction(value));
+        dispatch(new BeginQueryRecipeSearchSuggestionsAction(value));
     },
     clearSuggestions: (): ActionCreator => (dispatch, getState) => {
         dispatch(new ClearRecipeSearchSuggestionsAction());
