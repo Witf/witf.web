@@ -37,10 +37,24 @@ class RecipePageClass extends React.Component<RecipePageProps, any>{
                         {recipeTitle}                        
                     </div>
                     <div className="headers">
-                        <div className="content"><span className="fact">{recipe.ingredients.length}</span> Ingredienser</div>
-                        <div className="content"><span className="fact"><i className="fa fa-clock-o"></i> {recipe.cookingTime.maxUsedTimeInMinutes}</span> Minutter</div>
+                        <div className="content">
+                            <span className="fact">{recipe.ingredients.length}</span> Ingredienser
+                        </div>
+                        <div className="content">
+                            <span className="fact"><i className="fa fa-clock-o"></i> {recipe.cookingTime.maxUsedTimeInMinutes}</span> Minutter
+                        </div>
+                        <div className="content pull-right numberOfServings">
+                            <span className="fact">{recipe.numberOfServings}</span> <span className="text">personer</span>
+                        </div>
                     </div>
-                    <Ingredients ingredients={recipe.ingredients} />
+
+                    <div className="container-fluid">
+                        <div className="col-md-3">
+                            <Ingredients ingredients={recipe.ingredients} />
+                        </div>
+                        <div className="col-md-3">
+                    </div>
+                    </div>
                 </div>; 
             }
 

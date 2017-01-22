@@ -50,11 +50,11 @@
     .headers {
         height: 40px;
         width: 60%;
-        display: flex;
-        align-items: center;
-        margin-bottom: 10px;
+        margin-left: 15px;
+        padding-top:15px;
 
         .content {
+            float: left;
             font-size: 20px;
             font-family: sans-serif;
             font-style: italic;
@@ -62,47 +62,29 @@
         }
     }
 
+    .fact {
+        font-size: 16px;
+        font-family: sans-serif;
+        font-weight: 400;
+    }
 
-    .nav-container {
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        height: 48px;
+    .displayNone {
+        display: none;
+    }
 
-        nav a {
-            color: black;
-            position: relative;
-            z-index: 10;
-            display: inline-block;
-            background: #efefef;
-            background: rgba(255, 255, 255, 0.7);
-            width: 80px;
-            height: 48px;
+    .numberOfServings {
+
+        margin-right: 25px;
+
+        .counter {
+            font-size: 20px;
+            display: block;
             text-align: center;
-            padding: 4px 0 0;
-            font-size:11px;
-            font-weight: bold;
-            font-style: italic;
-            text-decoration: none;
         }
 
-        nav ul {
-            list-style: none;
-            margin: 0;
+        .text {
+            font-size: 16px;
         }
 
-        nav li {
-            display: inline-block;
-        }
-
-        .fact {
-            font-size: 14px;
-            font-family: sans-serif;
-            font-weight: 400;
-        }
-
-        .displayNone {
-            display: none;
-        }
-  }
+    }
 }
