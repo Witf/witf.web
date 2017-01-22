@@ -1,5 +1,6 @@
 import * as React from 'react';
 import "./layoutPage.scss";
+
 export interface LayoutProps {
     body: React.ReactElement<any>;
 }

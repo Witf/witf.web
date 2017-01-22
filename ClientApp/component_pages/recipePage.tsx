@@ -3,13 +3,17 @@ import { provide } from "redux-typed";
 import * as H from "history";
 import "./recipePage.scss";
 import {recipeDetailsActions} from "../store/actions/recipeDetailsActions";
-import { Router, Route, Link } from "react-router";
+import { Router, Route, Link, browserHistory } from "react-router";
 import { Ingredients } from "../components/ingredients/ingredients";
 
 class RecipePageClass extends React.Component<RecipePageProps, any>{
 
     componentDidMount() {
         this.props.loadRecipeDetails(this.props.params.id);
+    }
+
+    goBack() {
+        browserHistory.goBack();
     }
 
     render() {
@@ -32,6 +36,8 @@ class RecipePageClass extends React.Component<RecipePageProps, any>{
 
                 return <div id="page_recipe">
 
+                    <img className="close" onClick={this.goBack} src="/static/images/close-Window-icon.png" />
+                
                     <div className="recipe">                    
                         <div style={{backgroundImage: "url(" + recipe.imageUrl + ")"}} className="thumb"></div>
                         {recipeTitle}                        

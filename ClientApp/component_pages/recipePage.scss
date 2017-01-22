@@ -4,6 +4,14 @@
     padding-right: 1px; 
     margin-top: 25px; 
 
+    .close {
+        width: 64px;
+        height: 64;
+        position: absolute;
+        left: 16px;
+        top: 16px;
+    }
+
     .recipe {
 
         margin-left: 60%;
