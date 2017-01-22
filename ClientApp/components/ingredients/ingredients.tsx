@@ -12,19 +12,15 @@ export class Ingredients extends React.Component<IIngredientsProps, any> {
 
     render() {
 
-        return <div>
-
-                {this.props.ingredients.reduce((result,ingredient,i) => {
-
-                    if (!ingredient.quantity) {
-                        result.push(<div className="ingredient" key={i}><span className="name">{ingredient.name}</span></div>)
-                    } else {
-                        result.push(<div className="ingredient" key={i}>{ingredient.quantity} <span>{ingredient.unit}</span> <span className="name">{ingredient.name}</span></div>);
-                    }
-
-                    return result;
-                },[])
-                }
-        </div>;
+        return (
+                <div>
+                    {this.props.ingredients.map((ingredient, i) => (
+                        <div className="ingredient" key={i}>
+                            {ingredient.quantity ? <span>{ingredient.quantity} {ingredient.unit}</span> : null}
+                            <span className="name">{ingredient.name}</span>
+                        </div>
+                    ))}
+                </div>
+            )
     }
 }
