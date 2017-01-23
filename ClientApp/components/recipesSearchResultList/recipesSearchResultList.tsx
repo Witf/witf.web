@@ -2,13 +2,14 @@
 import "./recipesSearchResultList.scss";
 import { RecipeCard } from "../recipeCard/recipeCard";
 import { recipeSearchActions } from "../../store/actions/recipeSearchActions";
+import { ActionCreator } from "../../store/store";
 
 export interface IRecipesSearchResultListProps {
     recipies: IRecipe[];
     query: string;
     skipMarker: string;
     searching: boolean;
-    more: Function;
+    more: (q: string, skipMarker: string) => any;
 }
 
 export function RecipesSearchResultList(props: IRecipesSearchResultListProps) {
