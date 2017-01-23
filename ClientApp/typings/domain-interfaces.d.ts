@@ -19,6 +19,7 @@ interface IRecipeSearchsState {
     suggestions: ISearchSuggestion[];
     queryResults: IRecipe[];
     currentQuery: string;
+    currentSkipMarker: string;
 }
 
 interface ISearchSuggestion {

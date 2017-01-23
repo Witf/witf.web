@@ -8,4 +8,18 @@
     flex-wrap: wrap;
     margin-top: 25px;
     justify-content: flex-start;
+
+    .more {
+        height: 100px; 
+        width: 100%;
+        display:table; 
+        table-layout: fixed;
+    }
+
+    .centered {
+        display:table-cell;
+        vertical-align:middle;
+        text-align:center;
+    }
+
 }

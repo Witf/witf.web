@@ -5,41 +5,45 @@ const unloadedState: IRecipeSearchsState = {
     isLoading: false,
     suggestions: [],
     queryResults: [],
-    currentQuery: ""
+    currentQuery: "",
+    currentSkipMarker: ""
 };
 
 export const recipeSearchReducer: Reducer<IRecipeSearchsState> = (state, action) => {
     if (isActionType(action, Actions.BeginQueryRecipesAction)) {
         return {
-            suggestions: state.suggestions,
-            currentQuery: action.query,
             isLoading: true,
-            queryResults: state.queryResults
+            suggestions: state.suggestions,
+            queryResults: state.queryResults,
+            currentQuery: action.query,
+            currentSkipMarker: action.skipMarker
         };
     }
     if (isActionType(action, Actions.CompletedQueryRecipesAction)) {
         return {
-            suggestions: state.suggestions,
-            currentQuery:
-            state.currentQuery,
             isLoading: false,
-            queryResults: action.recipies
+            suggestions: state.suggestions,
+            queryResults: state.currentSkipMarker ? state.queryResults.concat(action.recipies) : action.recipies,
+            currentQuery: state.currentQuery,
+            currentSkipMarker: action.skipMarker
         };
     }
     if (isActionType(action, Actions.CompletedRecipeSearchSuggestionsAction)) {
         return {
-            suggestions: action.suggestions,
-            currentQuery: state.currentQuery,
             isLoading: state.isLoading,
-            queryResults: state.queryResults
+            suggestions: action.suggestions,
+            queryResults: state.queryResults,
+            currentQuery: state.currentQuery,
+            currentSkipMarker: state.currentSkipMarker
         };
     }
     if (isActionType(action, Actions.ClearRecipeSearchSuggestionsAction)) {
         return {
-            suggestions: [],
-            currentQuery: state.currentQuery,
             isLoading: state.isLoading,
-            queryResults: state.queryResults
+            suggestions: [],
+            queryResults: state.queryResults,
+            currentQuery: state.currentQuery,
+            currentSkipMarker: state.currentSkipMarker
         };
     }
     return state || unloadedState;

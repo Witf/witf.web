@@ -1,11 +1,14 @@
 ﻿import * as React from "react";
 import "./recipesSearchResultList.scss";
 import { RecipeCard } from "../recipeCard/recipeCard";
+import { recipeSearchActions } from "../../store/actions/recipeSearchActions";
 
 export interface IRecipesSearchResultListProps {
     recipies: IRecipe[];
     query: string;
+    skipMarker: string;
     searching: boolean;
+    more: Function;
 }
 
 export function RecipesSearchResultList(props: IRecipesSearchResultListProps) {
@@ -19,7 +22,9 @@ export function RecipesSearchResultList(props: IRecipesSearchResultListProps) {
         return (
             <div className="recipesSearchResultList">
                 {props.recipies.map((recipe, i) => <RecipeCard recipe={recipe} key={i} />)}
-            </div>
+                {props.recipies.length % 20 == 0 ? <div className="more centered"><button className="btn btn-default" onClick={() => props.more(props.query, props.skipMarker) }>Last flere oppskrifter</button>
+				</div> : '' }
+            </div>            
         );
     }
 

@@ -29,11 +29,7 @@ class RecipeSearchBoxClass extends React.Component<SearchBoxProps, any> {
         }
     }
     queryRecipies() {
-        this.props.queryRecipies(this.state.value);
-    }
-    onSubmitForm(e: React.SyntheticEvent<Event>) {
-        e.preventDefault();
-        this.queryRecipies();
+        this.props.queryRecipies(this.state.value, undefined);
     }
 
     onSuggestionsFetchRequested({value}) {
@@ -75,7 +71,7 @@ class RecipeSearchBoxClass extends React.Component<SearchBoxProps, any> {
         return (
             <div className="searchbox-wrapper">
                 <h2 className="text-shadow center" style={{ color: "white" }}>Hva har du lyst på i dag?</h2>
-                <form onSubmit={this.onSubmitForm.bind(this)}>
+                <form>
                     <div className="searchBox">
                         <Autosuggest
                             onSuggestionSelected={this.onSuggestionSelected.bind(this)}

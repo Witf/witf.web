@@ -3,7 +3,8 @@ import { provide } from "redux-typed";
 import { RecipeSearchBox } from "../components/recipeSearchBox/recipeSearchBox";
 import "./homePage.scss";
 import * as H from "history";
-import {RecipesSearchResultList} from "../components/recipesSearchResultList/recipesSearchResultList";
+import { RecipesSearchResultList } from "../components/recipesSearchResultList/recipesSearchResultList";
+import { recipeSearchActions } from "../store/actions/recipeSearchActions";
 
 class Home extends React.Component<HomeProps, { searchText: string; }> {
     constructor(props) {
@@ -18,7 +19,10 @@ class Home extends React.Component<HomeProps, { searchText: string; }> {
                     <RecipesSearchResultList 
                         searching={this.props.isLoading} 
                         query={this.props.currentQuery} 
-                        recipies={this.props.queryResults}/>
+                        skipMarker={this.props.currentSkipMarker}
+                        recipies={this.props.queryResults}
+                        more={this.props.queryRecipies}
+                        />
                 </div>
             </div>
         );
@@ -26,7 +30,7 @@ class Home extends React.Component<HomeProps, { searchText: string; }> {
 }
 
 const provider = provide(
-    (state: IApplicationState) => state.recipeSearch,{}
+    (state: IApplicationState) => state.recipeSearch,recipeSearchActions
 ).withExternalProps<{
     location: H.Location,
     params: { q: string }

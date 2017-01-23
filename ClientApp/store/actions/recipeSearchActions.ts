@@ -4,13 +4,13 @@ import { ActionCreator } from "../store";
 
 @typeName("RecipeSearch_QUERY_RECIPES")
 export class BeginQueryRecipesAction extends Action {
-    constructor(public query: string) {
+    constructor(public query: string, public skipMarker: string) {
         super();
     }
 }
 @typeName("RecipeSearch_RECIEVED_RECIPES_QUERY")
 export class CompletedQueryRecipesAction extends Action {
-    constructor(public query: string, public recipies: IRecipe[]) {
+    constructor(public query: string, public skipMarker: string, public recipies: IRecipe[]) {
         super();
     }
 }
@@ -34,15 +34,17 @@ export class ClearRecipeSearchSuggestionsAction extends Action {
 }
 
 export const recipeSearchActions = {
-    queryRecipies: (q: string): ActionCreator => (dispatch, getState) => {
-        let fetchTask = fetch(`http://localhost:1234/api/findRecipes?q=${q}`)
+    queryRecipies: (q: string, skipMarker: string): ActionCreator => (dispatch, getState) => {
+
+        let skipMarkerParam = skipMarker ? `&skipMarker=${encodeURIComponent(skipMarker)}` : '';
+        let fetchTask = fetch(`http://localhost:1234/api/findRecipes?q=${q}${skipMarkerParam}&take=20`)
         // let fetchTask = fetch(`http://witf.apphb.com/api/findRecipes?q=${q}`)
             .then(response => response.json())
             .then((data: { recipes: IRecipe[], skipMarker: string }) => {
-                dispatch(new CompletedQueryRecipesAction(q, data.recipes));
+                dispatch(new CompletedQueryRecipesAction(q, data.skipMarker, data.recipes));
             });
 
-        dispatch(new BeginQueryRecipesAction(q));
+        dispatch(new BeginQueryRecipesAction(q, skipMarker));
     },
     querySuggestions: ({value}): ActionCreator => (dispatch, getState) => {
         let fetchTask = fetch(`http://localhost:1234/api/autocomplete?w=${value}`)
