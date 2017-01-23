@@ -1,7 +1,18 @@
 #page_directions {
     height: 100%;
     overflow: hidden;
-    padding: 50px;
+    padding-top: 96px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 0;
+
+    .close {
+        width: 64px;
+        height: 64;
+        position: absolute;
+        left: 16px;
+        top: 16px;
+    }
 
     iframe {
 	    border: none;
