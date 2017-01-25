@@ -1,10 +1,10 @@
-﻿.recipetCard {
+﻿.recipeCard {
     margin: 5px;
     display: flex;
     flex-direction: column;
     max-width: 150px;
 
-    .recipetImage {
+    .recipeImage {
         height: 150px;
         width: 150px;
         background-position: center;
@@ -15,9 +15,24 @@
         &:hover{
             background-size: auto 180px;
         }
+
     }
 
-    .recipetInfo {
+    .source {
+         color: white;
+        -webkit-text-fill-color: white; /* Will override color (regardless of order) */
+        -webkit-text-stroke-width: 1px;
+        -webkit-text-stroke-color: black;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-style: italic;
+        margin-top: -20px;
+        height: 20px;
+        font-size: 12px;
+        padding-right: 5px;
+        text-align: right;
+    }
+
+    .recipeInfo {
         .title {
             padding: 3px;
             font-size: 1.1em;

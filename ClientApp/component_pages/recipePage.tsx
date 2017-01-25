@@ -34,14 +34,22 @@ class RecipePageClass extends React.Component<RecipePageProps, any>{
                     recipeTitle = <div className="recipe-title"><a href={recipe.urlToRecipeAtSource} target="_blank"><h4>{recipe.title}</h4></a></div>;
                 }
 
+                const imgStyle = { backgroundImage: `url("${recipe.imageUrl}")` };
+
                 return <div id="page_recipe">
 
                     <img className="close" onClick={this.goBack} src="/static/images/close-Window-icon.png" />
+
+                    <div className="recipe-wrapper">                    
                 
-                    <div className="recipe">                    
-                        <div style={{backgroundImage: "url(" + recipe.imageUrl + ")"}} className="thumb"></div>
-                        {recipeTitle}                        
+                        <div className="recipe">                    
+                            <div style={imgStyle} className="thumb"></div>
+                            {recipeTitle}
+                            <h5 className="source">{recipe.source.toLowerCase()}.no</h5>
+                        </div>
+
                     </div>
+
                     <div className="headers">
                         <div className="content">
                             <span className="fact">{recipe.ingredients.length}</span> Ingredienser
