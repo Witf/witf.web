@@ -8,6 +8,7 @@ const apiService = new ApiService();
 
 const bootstrap = (/*dispatchAction*/) => {
     
+    //TODO(mdog): Remove this. Pass in config.json instead.
     let config = {
                     "baseUrl": "http://witf.apphb.com/api",
                     "auth0": {

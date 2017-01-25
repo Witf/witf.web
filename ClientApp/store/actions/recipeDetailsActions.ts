@@ -1,6 +1,7 @@
 ﻿import { typeName, Action } from 'redux-typed';
 import { fetch, addTask } from 'domain-task';
 import { ActionCreator } from "../store";
+import * as api from './api';
 
 @typeName("recipeDetails_LoadingRecipeDetailsAction")
 export class BeginLoadingRecipeDetailsAction extends Action {
@@ -24,12 +25,7 @@ export class ErrorLoadingRecipeDetailsAction extends Action {
 export const recipeDetailsActions = {
     loadRecipeDetails: (id:string): ActionCreator => (dispatch, getState) => {
 
-        // const fetchTask = fetch(`http://witf.apphb.com/api/recipe/${encodeURIComponent(id)}`)
-        const fetchTask = fetch(`http://localhost:1234/api/recipe/${encodeURIComponent(id)}`)
-            .then(response => response.json())
-            .then((recipe: IRecipeDetails) => {
-                dispatch(new CompletedLoadingRecipeDetailsAction(id, recipe));
-            });
+        let fetchTask = api.getRecipe(id, dispatch);
 
         dispatch(new BeginLoadingRecipeDetailsAction(id));
     }
