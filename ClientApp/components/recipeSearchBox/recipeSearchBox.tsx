@@ -28,10 +28,6 @@ class RecipeSearchBoxClass extends React.Component<SearchBoxProps, any> {
             this.input = autosuggest.input;
         }
     }
-    queryRecipies() {
-        this.props.queryRecipies(this.state.value, undefined);
-    }
-
     onSuggestionsFetchRequested({value}) {
         const opts = value.split(" ");
         this.props.querySuggestions({value: opts[opts.length - 1] });
@@ -61,6 +57,11 @@ class RecipeSearchBoxClass extends React.Component<SearchBoxProps, any> {
             });
         }
     }
+    handleSubmit(e:React.FormEvent<HTMLFormElement>){
+        e.preventDefault();
+        e.stopPropagation();
+        this.props.queryRecipies(this.state.value, undefined);
+    }
     render() {
         const inputProps = {
             placeholder: "",
@@ -71,7 +72,7 @@ class RecipeSearchBoxClass extends React.Component<SearchBoxProps, any> {
         return (
             <div className="searchbox-wrapper">
                 <h2 className="text-shadow center" style={{ color: "white" }}>Hva har du lyst på i dag?</h2>
-                <form>
+                <form onSubmit={this.handleSubmit.bind(this)}>
                     <div className="searchBox">
                         <Autosuggest
                             onSuggestionSelected={this.onSuggestionSelected.bind(this)}
@@ -82,7 +83,7 @@ class RecipeSearchBoxClass extends React.Component<SearchBoxProps, any> {
                             renderSuggestion={this.renderSuggestion}
                             inputProps={inputProps}
                             ref={this.storeInputReference.bind(this)} />
-                        <button onClick={this.queryRecipies.bind(this)} className="searchBtn">Søk</button>
+                        <button type="submit" className="searchBtn">Søk</button>
                     </div>
                 </form>
                 <LoadIcon style={{ marginTop: 15, opacity: this.props.isLoading ? 1 : 0 }} />
