@@ -2,11 +2,12 @@ import _ from 'lodash';
 import Auth0Service from './Auth0Service';
 import ApiService from './ApiService';
 import {AsyncEvent} from 'ts-events';
+import { userProfileActions } from "../store/actions/userProfileActions";
 
 const auth0Service = new Auth0Service();
 const apiService = new ApiService();
 
-const bootstrap = (/*dispatchAction*/) => {
+const bootstrap = () => {
     
     //TODO(mdog): Remove this. Pass in config.json instead.
     let config = {
@@ -23,7 +24,7 @@ const bootstrap = (/*dispatchAction*/) => {
     setApiTokens();
 
     auth0Service.profileChanged.attach(function(profile) {
-        //TODO(mdog):dispatchAction(profile);
+        userProfileActions.update(profile);
         setApiTokens();
     });
 };

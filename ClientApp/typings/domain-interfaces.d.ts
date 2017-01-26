@@ -8,7 +8,7 @@
 interface IApplicationState {
     recipeSearch: IRecipeSearchsState;
     recipeDetails: IRecipeDetailsState;
-    user: IUser;
+    userProfile: IUserProfileState;
 }
 
 interface IRecipeDetailsState {
@@ -53,7 +53,7 @@ interface ICookingTime {
     maxUsedTimeInMinutes: number;
 }
 
-interface IUser {
+interface IUserProfileState {
     name: string;
     picture: string;
 }

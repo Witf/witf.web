@@ -1,4 +1,5 @@
 import * as React from "react";
+import "./header.scss";
 import { connect } from 'react-redux';
 import { provide } from "redux-typed";
 import bootstrap from '../../services/bootstrapServices';
@@ -17,15 +18,20 @@ class HeaderClass extends React.Component<HeaderProps, any> {
     }
     render() {
         return (
-            <header>
+            <header className="global-header">
+                <div className="global-header__title">
+                    WITF
+                </div>
                 {auth0Service.loggedIn() &&
-                    <div className="text-shadow right" style={{ color: "white" }}>
-                        <a href="#" onClick={this.logout.bind(this)}>Logg ut</a>
+                    <div className="global-header-user">
+                        <span>{this.props.userProfile.name}</span>
+                        <img src={this.props.userProfile.picture} alt={this.props.userProfile.name} />
+                        <span className="login" onClick={this.logout.bind(this)}>Logg ut</span>                            
                     </div>
                 }
                 {!auth0Service.loggedIn() &&
-                    <div className="text-shadow right" style={{ color: "white" }}>
-                        <a href="#" onClick={this.login.bind(this)}>Logg inn</a>
+                    <div className="global-header-user">
+                        <span className="login" onClick={this.login.bind(this)}>Logg inn</span>                            
                     </div>
                 }
             </header>
@@ -35,7 +41,7 @@ class HeaderClass extends React.Component<HeaderProps, any> {
 
 const provider = provide((state: IApplicationState) => {
         return {
-            details: state.user
+            userProfile: state.userProfile
         }
     }, {}
 );
