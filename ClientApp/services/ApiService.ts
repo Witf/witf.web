@@ -12,7 +12,16 @@ const checkStatus = (response) => {
 
 const parseJson = response => response.json();
 
-class ApiService {
+export interface RequestParams {
+    url : string;
+    method: 'GET'|'PUT'|'POST'|'DELETE'; 
+    payload?:any; 
+    onPayload?:(json:string)=>void;
+    parse?:boolean; //Defaults to true
+    onResult:(payload:any)=>void;
+}
+
+export default class ApiService {
     private baseUrl: string;
     private token: string;
 
@@ -26,7 +35,8 @@ class ApiService {
         this.token = token;
     }
 
-    request({ url, method, payload, onPayload, parse, onResult}) {
+    request(params:RequestParams) {
+        const {url, method, payload, onPayload, parse, onResult} = params;
         const fetchUrl = `${this.baseUrl}${url}`;
         let options = {
             method,
@@ -36,16 +46,14 @@ class ApiService {
                 'Authorization': `Bearer ${this.token}`
             }
         };
-        if (payload) 
+        if (payload && onPayload) 
             options.body = JSON.stringify(onPayload ? onPayload(payload) : payload);
 
         let promise = fetch(fetchUrl, options).then(checkStatus);
-        if (parse) {
+        
+        if (parse != false)
             return promise.then(parseJson).then(json => onResult ? onResult(json) : json);
-        }
 
         return promise;
     }
 }
-
-export default ApiService;
