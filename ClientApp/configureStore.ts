@@ -2,6 +2,9 @@ import { createStore, applyMiddleware, compose, combineReducers, GenericStoreEnh
 import thunk from 'redux-thunk';
 import * as Store from './store/store';
 import { typedToPlain } from 'redux-typed';
+//import { configActions } from './store/actions/configActions';
+//import * as configActions from './store/actions/configActions';
+import bootstrap from './services/bootstrapServices';
 
 export default function configureStore(initialState?: IApplicationState) {
     // Build middleware. These are functions that can process the actions before they reach the store.
@@ -24,9 +27,10 @@ export default function configureStore(initialState?: IApplicationState) {
             store.replaceReducer(buildRootReducer(nextRootReducer.reducers));
         });
     }
-      
+
+    bootstrap();
+
     return store;
-    
 }
 
 function buildRootReducer(allReducers) {

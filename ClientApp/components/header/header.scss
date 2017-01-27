@@ -1,0 +1,45 @@
+.global-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	//background-color: @color-blue-dark;
+	height: 3.125em;
+	color: #fff;
+
+	&__title {
+		margin-right: auto;
+		font-size: 26px;
+		display: flex;
+		align-items: baseline;
+
+		span {
+			margin-left: .625rem;
+			//color: @color-blue;
+			font-size: 13px;
+		}
+	}
+
+	&-user {
+		margin-right: 10px;
+
+		img {
+			width: 30px;
+			height: 30px;
+			margin: 5px;
+		}
+
+		a {
+			color: #fff;
+			text-decoration: none;
+		}
+
+		a:hover {
+			//color: @color-blue;
+			text-decoration: underline;
+		}
+
+		.login {
+			cursor: pointer;
+		}
+	}
+}

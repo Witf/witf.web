@@ -1,6 +1,7 @@
 ﻿import { typeName, Action } from 'redux-typed';
 import { fetch, addTask } from 'domain-task';
 import { ActionCreator } from "../store";
+import * as api from './api';
 
 @typeName("RecipeSearch_QUERY_RECIPES")
 export class BeginQueryRecipesAction extends Action {
@@ -36,23 +37,13 @@ export class ClearRecipeSearchSuggestionsAction extends Action {
 export const recipeSearchActions = {
     queryRecipies: (q: string, skipMarker: string): ActionCreator => (dispatch, getState) => {
 
-        let skipMarkerParam = skipMarker ? `&skipMarker=${encodeURIComponent(skipMarker)}` : '';
-        let fetchTask = fetch(`http://localhost:1234/api/findRecipes?q=${q}${skipMarkerParam}&take=20`)
-        // let fetchTask = fetch(`http://witf.apphb.com/api/findRecipes?q=${q}`)
-            .then(response => response.json())
-            .then((data: { recipes: IRecipe[], skipMarker: string }) => {
-                dispatch(new CompletedQueryRecipesAction(q, data.skipMarker, data.recipes));
-            });
+        let fetchTask = api.findRecipes(q, skipMarker, dispatch)
 
         dispatch(new BeginQueryRecipesAction(q, skipMarker));
     },
     querySuggestions: ({value}): ActionCreator => (dispatch, getState) => {
-        let fetchTask = fetch(`http://localhost:1234/api/autocomplete?w=${value}`)
-//        let fetchTask = fetch(`http://witf.apphb.com/api/autocomplete?w=${value}`)
-            .then(response => response.json())
-            .then((data: ISearchSuggestion[]) => {
-                dispatch(new CompletedRecipeSearchSuggestionsAction(value, data));
-            });
+
+        let fetchTask = api.autocomplete(value, dispatch);
 
         dispatch(new BeginQueryRecipeSearchSuggestionsAction(value));
     },

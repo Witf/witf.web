@@ -1,0 +1,7 @@
+{
+    "baseUrl": "http://witf.apphb.com/api",
+    "auth0": {
+        "clientID": "yLeZKxDw4KMFZhS8ZEQgNbsGoWE5BG98",
+        "domain": "witf.eu.auth0.com"
+    }
+}

@@ -1,13 +1,15 @@
 import { ActionCreatorGeneric } from "redux-typed";
 import { recipeSearchReducer} from "./reducers/recipeSearchReducer";
 import { recipeDetailsReducer } from "./reducers/recipeDetailsReducer";
+import { userProfileReducer } from "./reducers/userProfileReducer";
 
 // whenever an action is dispatched, Redux will update each top-level application state property using
 // the reducer with the matching name. It's important that the names match exactly, and that the reducer
 // acts on the corresponding ApplicationState property type.
 export const reducers = {
     recipeSearch: recipeSearchReducer,
-    recipeDetails: recipeDetailsReducer
+    recipeDetails: recipeDetailsReducer,
+    userProfile: userProfileReducer
 };
  
 // this type can be used as a hint on action creators so that its 'dispatch' and 'getState' params are

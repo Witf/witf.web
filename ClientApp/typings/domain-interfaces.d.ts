@@ -8,6 +8,7 @@
 interface IApplicationState {
     recipeSearch: IRecipeSearchsState;
     recipeDetails: IRecipeDetailsState;
+    userProfile: IUserProfileState;
 }
 
 interface IRecipeDetailsState {
@@ -50,4 +51,9 @@ interface IIngredient {
 interface ICookingTime {
     minUsedTimeInMinutes: number;
     maxUsedTimeInMinutes: number;
+}
+
+interface IUserProfileState {
+    name: string;
+    picture: string;
 }
